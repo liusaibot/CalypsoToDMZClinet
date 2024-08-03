@@ -12,9 +12,16 @@ namespace CalypsoToDmzSftpClient
         static void Main(string[] args)
         {
             XLogger.AppendToLog("Process Started at " + DateTime.Now.ToLongTimeString());
-            SftpUtility sftpUtility = new SftpUtility();
-            sftpUtility.CopyFile();
+            MainAsync(args).GetAwaiter().GetResult();
             XLogger.AppendToLog("Process Ended at " + DateTime.Now.ToLongTimeString());
+        }
+
+        static async Task MainAsync(string[] args)
+        {
+            SftpUtility sftpUtility = new SftpUtility();
+            await sftpUtility.CopyFile();
+            
+
         }
     }
 }
